@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 // esquema PROFILES
-const profileSchema = new mongoose.Schema({
+const profileSchema = new Schema({
   // 1:1
   customer: {
     type: mongoose.Schema.Types.ObjectId,
@@ -10,25 +10,14 @@ const profileSchema = new mongoose.Schema({
   },
   birth_date: {
     type: Date,
-    required: true,
+    require: true,
+    unique: true,
   },
   address: {
-    street: {
-      type: String,
-      required: true,
-    },
-    street_number: {
-      type: String,
-      required: true,
-    },
-    city: {
-      type: String,
-      required: true,
-    },
-    country: {
-      type: String,
-      required: true,
-    },
+    street: String,
+    street_number: String,
+    city: String,
+    country: String,
   },
   deleted_at: { type: Date, default: null },
 });
