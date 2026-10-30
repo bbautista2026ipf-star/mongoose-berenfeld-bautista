@@ -10,14 +10,25 @@ const profileSchema = new mongoose.Schema({
   },
   birth_date: {
     type: Date,
-    require: true,
-    unique: true,
+    required: true,
   },
   address: {
-    street: String,
-    street_number: String,
-    city: String,
-    country: String,
+    street: {
+      type: String,
+      required: true,
+    },
+    street_number: {
+      type: String,
+      required: true,
+    },
+    city: {
+      type: String,
+      required: true,
+    },
+    country: {
+      type: String,
+      required: true,
+    },
   },
   deleted_at: { type: Date, default: null },
 });
