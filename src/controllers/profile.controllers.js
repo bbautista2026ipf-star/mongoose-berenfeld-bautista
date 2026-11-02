@@ -1,5 +1,5 @@
 import { matchedData } from "express-validator";
-import { ProfileModel } from "../../src/models/profile.model.js";
+import { ProfileModel } from "../models/profile.model.js";
 
 export const getAllProfiles = async (req, res) => {
   try {
@@ -61,8 +61,16 @@ export const updateProfile = async (req, res) => {
 export const deleteProfile = async (req, res) => {
   try {
     const { id } = matchedData(req);
-    const profile = await .
-  } catch {
-
+    const profile = await ProfileModel.findOneAndUpdate(
+      { _id: id, deleted_at: null },
+      { deleted_at: new Date() },
+      { returnDocument: "after" },
+    );
+    if (!profile) {
+      return res.status(404).json({ message: "Perfil no encontrado" });
+    }
+    return res.status(200).json({ message: "Perfil eliminado correctamente" });
+  } catch (error) {
+    return res.status(500).json({ message: "Error al eliminar el perfil" });
   }
 };
