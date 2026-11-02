@@ -9,6 +9,10 @@ import {
   errorHandler,
 } from "./src/middlewares/error.middleware.js";
 import "./src/config/database.js";
+import profileRoutes from "./src/routes/profile.routes.js";
+import customerRoutes from "./src/routes/customer.routes.js";
+import productRoutes from "./src/routes/product.routes.js";
+import orderRoutes from "./src/routes/order.routes.js";
 
 // Instancia de la aplicación; PORT por defecto si no está en el .env
 const app = express();
@@ -26,7 +30,10 @@ app.use(
 app.use(express.json());
 
 // Routers montados bajo el prefijo /api
-
+app.use("/api/profiles", profileRoutes);
+app.use("/api/customers", customerRoutes);
+app.use("/api/products", productRoutes);
+app.use("/api/orders", orderRoutes);
 // Después de las rutas: 404 si ninguna coincidió y manejador de errores global
 app.use(notFoundHandler);
 app.use(errorHandler);
