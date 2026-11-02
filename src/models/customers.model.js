@@ -4,22 +4,20 @@ import mongoose from "mongoose";
 const customerSchema = new mongoose.Schema({
   name: {
     type: String,
-    require: true,
-    unique: true,
+    required: true,
   },
   last_name: {
     type: String,
-    require: true,
-    unique: true,
+    required: true,
   },
   email: {
     type: String,
-    require: true,
+    required: true,
     unique: true,
   },
   phone_number: {
     type: Number,
-    require: true,
+    required: true,
     unique: true,
   },
   deleted_at: { type: Date, default: null },
